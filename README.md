@@ -26,33 +26,7 @@ Before installing Acer-RGB-Hub, ensure you have the required backend tools and P
 * [`facer-rgb`](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) (Required for underlying hardware communication)
 
 **2. Python Libraries:**
-This application requires Python 3, PySide6 (for the GUI), and Pillow/ColorThief (for the wallpaper sync feature). Because Acer-RGB-Hub relies on system-level hooks, it is highly recommended to install the core libraries via your system package manager, and use `pip` for `colorthief`:
-
-* **Arch Linux :**
-
-```bash
-sudo pacman -S python-pyside6 python-pillow
-pip install colorthief --break-system-packages
-
-```
-
-* **Debian / Ubuntu Based :**
-
-```bash
-sudo apt install python3-pyside6 python3-pil
-pip3 install colorthief --break-system-packages
-
-```
-
-* **Fedora :**
-
-```bash
-sudo dnf install python3-pyside6 python3-pillow
-pip install colorthief
-
-```
-
-*(Note: If you manage your Python environments using virtual environments, you can install all of them via pip using `pip install PyQt5 Pillow colorthief`).*
+This application requires Python 3, PySide6 (for the GUI), and Pillow/ColorThief (for the wallpaper sync feature). THe libraries would be installed by the install.sh script in a seperate venv for the app.
 
 ---
 
@@ -75,7 +49,6 @@ chmod +x install.sh
 sudo ./install.sh
 
 ```
-
 
 
 **What the installer does:**

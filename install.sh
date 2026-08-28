@@ -21,15 +21,19 @@ fi
 echo "[1/7] Setting up application environment in /opt/facer-gui..."
 
 mkdir -p /opt/facer-gui
-cp main.py /opt/facer-gui/facer-gui.py
-cp wallpaper_colors.py /opt/facer-gui/  # <-- ADD THIS LINE
+
+# Copy ALL python script files (main.py, wallpaper_gradients.py, wallpaper_colors.py, etc.)
+cp *.py /opt/facer-gui/
+mv /opt/facer-gui/main.py /opt/facer-gui/facer-gui.py 2>/dev/null || true
 chmod +x /opt/facer-gui/facer-gui.py
 
 python3 -m venv --system-site-packages /opt/facer-gui/venv
-echo "Installing Python dependencies (Pillow, ColorThief)..."
-/opt/facer-gui/venv/bin/pip install --quiet pillow colorthief
+echo "Installing Python dependencies (PySide6, Pillow, ColorThief)..."
+/opt/facer-gui/venv/bin/pip install --quiet PySide6 pillow colorthief
+
 cat << 'EOF' > /usr/local/bin/facer-gui
 #!/bin/bash
+cd /opt/facer-gui
 exec /opt/facer-gui/venv/bin/python /opt/facer-gui/facer-gui.py "$@"
 EOF
 
