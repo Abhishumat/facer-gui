@@ -3,12 +3,41 @@ import subprocess
 import configparser
 import colorsys
 import math
+import re
+from urllib.parse import unquote, urlparse
 from colorthief import ColorThief
 from PIL import Image, ImageEnhance
 
 def get_wallpaper_path():
 
     """Attempts to find the current wallpaper path across different Linux DEs."""
+
+    # COSMIC stores the active wallpaper in a small RON config file rather
+    # than in the GNOME-compatible gsettings keys.
+    cosmic_background_dir = os.path.expanduser(
+        "~/.config/cosmic/com.system76.CosmicBackground/v1"
+    )
+    if os.path.isdir(cosmic_background_dir):
+        cosmic_files = [os.path.join(cosmic_background_dir, "all")]
+        cosmic_files.extend(
+            os.path.join(cosmic_background_dir, name)
+            for name in sorted(os.listdir(cosmic_background_dir))
+            if name.startswith("output.")
+        )
+
+        for config_path in cosmic_files:
+            try:
+                with open(config_path, encoding="utf-8") as config_file:
+                    config_text = config_file.read()
+                match = re.search(r'source:\s*Path\("((?:\\.|[^"])*)"\)', config_text)
+                if not match:
+                    continue
+
+                path = match.group(1).replace(r"\\", "\\").replace(r"\"", '"')
+                if os.path.isfile(path):
+                    return path
+            except (OSError, UnicodeDecodeError):
+                continue
     
     # 1. Try GNOME
     try:
@@ -18,7 +47,9 @@ def get_wallpaper_path():
                 capture_output=True, text=True
             )
             if result.returncode == 0 and result.stdout.strip() != "''":
-                path = result.stdout.strip().strip("'").replace('file://', '')
+                wallpaper_uri = result.stdout.strip().strip("'")
+                parsed_uri = urlparse(wallpaper_uri)
+                path = unquote(parsed_uri.path) if parsed_uri.scheme == "file" else wallpaper_uri
                 if os.path.exists(path):
                     return path
     except Exception:
