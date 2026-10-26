@@ -1,6 +1,6 @@
 # GUI for Acer RGB keyboard linux Module
 
-Acer-RGB-Hub is a complete graphical interface and system automation suite for Acer Nitro/ Predator/ Helios keyboards on Linux. It provides a modern PyQt5 interface for customizing zones and animations, while utilizing shell scripts to integrate deeply with the system via udev, systemd, and XDG autostart.
+Acer-RGB-Hub is a complete graphical interface and system automation suite for Acer Nitro/ Predator/ Helios keyboards on Linux. It provides a interface for customizing zones and animations, while utilizing shell scripts to integrate deeply with the system via udev, systemd, and XDG autostart.
 
 ---
 ![Showcase of the GUI](Ui_showcase.png)
