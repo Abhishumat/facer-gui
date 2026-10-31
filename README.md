@@ -37,7 +37,7 @@ The provided `install.sh` script handles everything from copying binaries to reg
 
 1. Clone the repository and navigate into the directory:
 ```bash
-git clone https://github.com/yourusername/facer_gui.git
+git clone https://github.com/Abhishumat/facer_gui.git
 cd facer_gui
 
 ```
