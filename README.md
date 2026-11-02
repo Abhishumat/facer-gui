@@ -1,6 +1,6 @@
 # GUI for Acer RGB keyboard linux Module
 
-Acer-RGB-Hub is a complete graphical interface and system automation suite for Acer Nitro/ Predator/ Helios keyboards on Linux. It provides a interface for customizing zones and animations, while utilizing shell scripts to integrate deeply with the system via udev, systemd, and XDG autostart.
+Facer-gui is a graphical interface for Acer Nitro/ Predator/ Helios keyboards on Linux. It provides a interface for customizing zones and animations, while utilizing shell scripts to integrate deeply with the system via udev, systemd, and XDG autostart.
 
 ---
 ![Showcase of the GUI](Ui_showcase.png)
@@ -19,17 +19,16 @@ Acer-RGB-Hub is a complete graphical interface and system automation suite for A
 
 ## Dependencies
 
-Before installing Acer-RGB-Hub, ensure you have the required backend tools and Python libraries installed.
+Before installing Facer-gui, ensure you have the required backend tools and Python libraries installed.
 
 **1. Hardware Backend:**
 
 * [`facer-rgb`](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) (Required for underlying hardware communication)
 
 **2. Python Libraries:**
-This application requires Python 3, PySide6 (for the GUI), and Pillow/ColorThief (for the wallpaper sync feature). THe libraries would be installed by the install.sh script in a seperate venv for the app.
+This application requires Python 3, PySide6 (for the GUI), and Pillow/ColorThief (for the wallpaper sync feature). The libraries would be installed by the install.sh script in a separate venv for the app.
 
 ---
-
 
 ## Installation
 
@@ -38,10 +37,8 @@ The provided `install.sh` script handles everything from copying binaries to reg
 1. Clone the repository and navigate into the directory:
 ```bash
 git clone https://github.com/Abhishumat/facer-gui.git
-cd facer_gui
-
+cd facer-gui
 ```
-
 
 2. Make the installer executable and run it as root:
 ```bash
@@ -49,7 +46,6 @@ chmod +x install.sh
 sudo ./install.sh
 
 ```
-
 
 **What the installer does:**
 
